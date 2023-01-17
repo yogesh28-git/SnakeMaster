@@ -2,15 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum Direction
-{
-    left,
-    right,
-    down,
-    up,
-    invalid
-}
-public class SnakeController : MonoBehaviour
+
+public class RedSnakeController : MonoBehaviour
 {
     private Direction facing = Direction.right;
     private Direction pressed = Direction.invalid;
@@ -18,7 +11,7 @@ public class SnakeController : MonoBehaviour
     private int timer = 1;
     private int maxTimer = 50;
     [SerializeField] private int speed = 1;
-    
+
     private int width = 36;
     private int height = 19;
     private bool isDead = false;
@@ -28,13 +21,13 @@ public class SnakeController : MonoBehaviour
     private Vector3 downTurn = new Vector3(0, 0, -90);
     private Vector3 upTurn = new Vector3(0, 0, 90);
 
-    private int listCount = 3;
+    private int listCount = 5;
     [SerializeField] List<Transform> bodyList;
     [SerializeField] List<Vector3> positionList;
     [SerializeField] List<Vector3> rotationList;
     [SerializeField] GameObject bodyPrefab;
     [SerializeField] GameObject uicontroller;
-    
+
 
     void Start()
     {
@@ -43,6 +36,8 @@ public class SnakeController : MonoBehaviour
         positionList[0] = bodyList[0].position;
         positionList[1] = bodyList[1].position;
         positionList[2] = bodyList[2].position;
+        positionList[3] = bodyList[3].position;
+        positionList[4] = bodyList[4].position;
 
         maxTimer = (int)maxTimer / speed;
     }
@@ -75,7 +70,7 @@ public class SnakeController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+
         if (!isDead)
         {
             MovementController();
@@ -112,10 +107,10 @@ public class SnakeController : MonoBehaviour
                     transform.eulerAngles = upTurn;
                     break;
             }
-            if(head.x < 0) { head.x = width-1; }
-            else if(head.x >= width) { head.x = 0; }
-            else if(head.y < 0) { head.y = height-1; }
-            else if(head.y >= height) { head.y = 0; }
+            if (head.x < 0) { head.x = width - 1; }
+            else if (head.x >= width) { head.x = 0; }
+            else if (head.y < 0) { head.y = height - 1; }
+            else if (head.y >= height) { head.y = 0; }
 
             transform.position = head;
             timer = 1;
@@ -135,7 +130,7 @@ public class SnakeController : MonoBehaviour
             }
         }
     }
-    
+
 
     public void AddBodyPart()
     {
@@ -156,8 +151,7 @@ public class SnakeController : MonoBehaviour
         {
             Debug.Log("Death");
             isDead = true;
-            Destroy(this.gameObject,1);
-            uicontroller.GetComponent<UI_Controller>().Invoke("EnableGameOver", 1f);
+            Destroy(this.gameObject, 1);
         }
     }
 

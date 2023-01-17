@@ -9,6 +9,8 @@ public class FoodController : MonoBehaviour
     [SerializeField] GameObject foodPrefab;
     [SerializeField] ScoreController scoreScript;
     private SnakeController snakeController;
+    private int width = 36;
+    private int height = 19;
     private Vector3 head;
 
     void Start()
@@ -45,7 +47,10 @@ public class FoodController : MonoBehaviour
         {
             food = Instantiate(foodPrefab);
             food.SetActive(true);
-            pos = snakeController.RandomSpawnPosition();
+            do
+            {
+                pos = new Vector3((int)Random.Range(0, width - 1), (int)Random.Range(0, height - 1), 0);
+            } while (snakeController.PositionCheck(pos));
             food.transform.position = pos;
         }
     }

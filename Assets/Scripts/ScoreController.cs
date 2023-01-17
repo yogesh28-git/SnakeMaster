@@ -8,16 +8,21 @@ public class ScoreController : MonoBehaviour
 {
     private TextMeshProUGUI scoreText;
     private int score = 0;
+    private int buildIndex;
 
     void Start()
     {
         scoreText = gameObject.GetComponent<TextMeshProUGUI>();
         scoreText.text = "Score: " + score;
         SetHighScore();
+        buildIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;  
     }
     void Update()
     {
-        
+        if (buildIndex != 1)
+        {
+            SetHighScore();
+        }
     }
     
     public void ChangeScore()
