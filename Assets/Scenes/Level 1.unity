@@ -9195,11 +9195,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameover: {fileID: 396860840}
   pause: {fileID: 171472256}
-  snakeHead: {fileID: 698211404}
+  snakeHead1: {fileID: 698211404}
+  snakeHead2: {fileID: 698211404}
   restart: {fileID: 1725668285}
   menu: {fileID: 665804104}
   menu2: {fileID: 2026606554}
   resume: {fileID: 739374905}
+  victory: {fileID: 1947148104}
 --- !u!1 &2026606552
 GameObject:
   m_ObjectHideFlags: 0

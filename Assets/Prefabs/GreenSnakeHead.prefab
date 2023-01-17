@@ -111,10 +111,11 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   rotationList:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 180}
+  - {x: 0, y: 0, z: 180}
+  - {x: 0, y: 0, z: 180}
+  - {x: 0, y: 0, z: 180}
+  - {x: 0, y: 0, z: 180}
   bodyPrefab: {fileID: 0}
   uicontroller: {fileID: 0}
+  redSnakeScript: {fileID: 0}

@@ -26,7 +26,8 @@ public class RedSnakeController : MonoBehaviour
     [SerializeField] List<Vector3> positionList;
     [SerializeField] List<Vector3> rotationList;
     [SerializeField] GameObject bodyPrefab;
-    [SerializeField] GameObject uicontroller;
+    [SerializeField] UI_Controller uicontroller;
+    [SerializeField] GreenSnakeController greenSnakeScript;
 
 
     void Start()
@@ -151,7 +152,12 @@ public class RedSnakeController : MonoBehaviour
         {
             Debug.Log("Death");
             isDead = true;
-            Destroy(this.gameObject, 1);
+            uicontroller.EnableGameOver("Green Wins !!!");
+            return;
+        }
+        else if (greenSnakeScript.PositionCheck(head))
+        {
+            uicontroller.EnableGameOver("Red Wins !!!");
         }
     }
 

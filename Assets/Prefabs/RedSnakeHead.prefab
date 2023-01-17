@@ -118,3 +118,4 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   bodyPrefab: {fileID: 0}
   uicontroller: {fileID: 0}
+  greenSnakeScript: {fileID: 0}

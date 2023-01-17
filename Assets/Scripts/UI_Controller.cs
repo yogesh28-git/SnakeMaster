@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UI_Controller : MonoBehaviour
 {
     [SerializeField] private GameObject gameover;
     [SerializeField] private GameObject pause;
-    [SerializeField] private GameObject snakeHead;
+    [SerializeField] private GameObject snakeHead1;
+    [SerializeField] private GameObject snakeHead2;
     [SerializeField] private Button restart;
     [SerializeField] private Button menu;
     [SerializeField] private Button menu2;
     [SerializeField] private Button resume;
+    [SerializeField] private TextMeshProUGUI victory;
 
     private bool menuLoad = false;
     private bool restartLoad = false;
@@ -35,14 +38,13 @@ public class UI_Controller : MonoBehaviour
         }
         if (restartLoad)
         {
-            StartCoroutine(LoadYourAsyncScene(2));
+            StartCoroutine(LoadYourAsyncScene(SceneManager.GetActiveScene().buildIndex));
         }
-        
     }
     private void Resume()
     {
         pause.SetActive(false);
-        snakeHead.SetActive(true);
+        snakeHead1.SetActive(true);
     }
     private void Restart()
     {
@@ -53,9 +55,18 @@ public class UI_Controller : MonoBehaviour
     {
         menuLoad = true;
     }
-    public void EnableGameOver()
+    public void EnableGameOver(string scoretext = null)
     {
         gameover.SetActive(true);
+
+        if (scoretext!=null)
+        {
+            if(snakeHead1 == snakeHead2)
+            {
+                scoretext = "Draw !!!";
+            }
+            victory.text = scoretext;
+        }
     }
 
     public void EnablePauseMenu()

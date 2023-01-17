@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GreenSnakeController : MonoBehaviour
 {
-    private Direction facing = Direction.right;
+    private Direction facing = Direction.left;
     private Direction pressed = Direction.invalid;
     private Vector3 head;
     private int timer = 1;
@@ -26,7 +26,8 @@ public class GreenSnakeController : MonoBehaviour
     [SerializeField] List<Vector3> positionList;
     [SerializeField] List<Vector3> rotationList;
     [SerializeField] GameObject bodyPrefab;
-    [SerializeField] GameObject uicontroller;
+    [SerializeField] UI_Controller uicontroller;
+    [SerializeField] RedSnakeController redSnakeScript;
 
 
     void Start()
@@ -87,7 +88,7 @@ public class GreenSnakeController : MonoBehaviour
         }
         else
         {
-            facing = (pressed != Direction.invalid) ? pressed : Direction.right;
+            facing = (pressed != Direction.invalid) ? pressed : Direction.left;
             switch (facing)
             {
                 case Direction.left:
@@ -151,7 +152,12 @@ public class GreenSnakeController : MonoBehaviour
         {
             Debug.Log("Death");
             isDead = true;
-            Destroy(this.gameObject, 1);
+            uicontroller.EnableGameOver("Red Wins !!!");
+            return;
+        }
+        else if (redSnakeScript.PositionCheck(head))
+        {
+            uicontroller.EnableGameOver("Green Wins !!!");
         }
     }
 

@@ -156,8 +156,7 @@ public class SnakeController : MonoBehaviour
         {
             Debug.Log("Death");
             isDead = true;
-            Destroy(this.gameObject,1);
-            uicontroller.GetComponent<UI_Controller>().Invoke("EnableGameOver", 1f);
+            uicontroller.GetComponent<UI_Controller>().EnableGameOver();
         }
     }
 
