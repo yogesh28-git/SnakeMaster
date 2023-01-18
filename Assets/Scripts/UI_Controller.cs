@@ -7,6 +7,7 @@ using TMPro;
 
 public class UI_Controller : MonoBehaviour
 {
+    [SerializeField] private AudioController audiocontroller;
     [SerializeField] private GameObject gameover;
     [SerializeField] private GameObject pause;
     [SerializeField] private GameObject snakeHead1;
@@ -43,16 +44,19 @@ public class UI_Controller : MonoBehaviour
     }
     private void Resume()
     {
+        audiocontroller.Play(Sounds.buttonClick);
         pause.SetActive(false);
         snakeHead1.SetActive(true);
     }
     private void Restart()
     {
+        audiocontroller.Play(Sounds.buttonClick);
         gameover.SetActive(false);
         restartLoad = true;
     }
     private void Menu()
     {
+        audiocontroller.Play(Sounds.buttonClick);
         menuLoad = true;
     }
     public void EnableGameOver(string scoretext = null)

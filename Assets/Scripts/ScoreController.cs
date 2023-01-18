@@ -9,13 +9,17 @@ public class ScoreController : MonoBehaviour
     private TextMeshProUGUI scoreText;
     private int score = 0;
     private int buildIndex;
+    [SerializeField] private TextMeshProUGUI powerUpText;
 
     void Start()
     {
         scoreText = gameObject.GetComponent<TextMeshProUGUI>();
         scoreText.text = "Score: " + score;
         SetHighScore();
-        buildIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;  
+        buildIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        
+        powerUpText.text = "";
+        
     }
     void Update()
     {
@@ -37,6 +41,25 @@ public class ScoreController : MonoBehaviour
         if (score > PlayerPrefs.GetInt("score"))
         {
             PlayerPrefs.SetInt("score", score);
+        }
+    }
+
+    public void PowerUpText(Collectibles powerUp)
+    {
+        switch (powerUp)
+        {
+            case Collectibles.shield:
+                powerUpText.text = "Shield Active";
+                break;
+            case Collectibles.doubleSpeed:
+                powerUpText.text = "Double Speed Active";
+                break;
+            case Collectibles.doublePoint:
+                powerUpText.text = "Double Score Active";
+                break;
+            case Collectibles.powerUp:
+                powerUpText.text = "";
+                break;
         }
     }
 

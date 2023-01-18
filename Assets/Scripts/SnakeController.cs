@@ -2,14 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum Direction
-{
-    left,
-    right,
-    down,
-    up,
-    invalid
-}
+
 public class SnakeController : MonoBehaviour
 {
     private Direction facing = Direction.right;
@@ -22,6 +15,7 @@ public class SnakeController : MonoBehaviour
     private int width = 36;
     private int height = 19;
     private bool isDead = false;
+    private bool isShield = false;
 
     private Vector3 rightTurn = new Vector3(0, 0, 0);
     private Vector3 leftTurn = new Vector3(0, 0, 180);
@@ -43,12 +37,13 @@ public class SnakeController : MonoBehaviour
         positionList[0] = bodyList[0].position;
         positionList[1] = bodyList[1].position;
         positionList[2] = bodyList[2].position;
-
         maxTimer = (int)maxTimer / speed;
     }
 
     void Update()
     {
+        
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             uicontroller.GetComponent<UI_Controller>().EnablePauseMenu();
@@ -165,6 +160,7 @@ public class SnakeController : MonoBehaviour
 
     private void SnakeDeath()
     {
+        if (isShield) { return; }
         if (positionList.GetRange(1, listCount - 1).Contains(head))
         {
             Debug.Log("Death");
@@ -185,4 +181,21 @@ public class SnakeController : MonoBehaviour
         }
     }
 
+    public void ImplementPowerUp(Collectibles powerUpType)
+    {
+        Debug.Log("powerup");
+        if (powerUpType == Collectibles.doubleSpeed) 
+        { 
+            maxTimer = 50;
+            maxTimer = (int)maxTimer / (speed * 2);
+        }
+        else if(powerUpType == Collectibles.shield) { isShield = true; }
+    } 
+    public void ResetPowerUp()
+    {
+        Debug.Log("reset");
+        maxTimer = 50;
+        maxTimer = (int)maxTimer / speed;
+        isShield = false;
+    }
 }

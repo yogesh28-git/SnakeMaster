@@ -6,6 +6,7 @@ public class DeathMatchFoodController : MonoBehaviour
 {
 
     private GameObject food = null;
+    [SerializeField] private AudioController audiocontroller;
     [SerializeField] GameObject foodPrefab;
     [SerializeField] ScoreController redScoreScript;
     [SerializeField] ScoreController greenScoreScript;
@@ -42,12 +43,14 @@ public class DeathMatchFoodController : MonoBehaviour
         {
             if (redHead == food.transform.position)
             {
+                audiocontroller.Play(Sounds.pickup);
                 Destroy(food);
                 greenSnakeController.AddBodyPart();
                 redScoreScript.ChangeScore(10);
             }
             else if (greenHead == food.transform.position)
             {
+                audiocontroller.Play(Sounds.pickup);
                 Destroy(food);
                 redSnakeController.AddBodyPart();
                 greenScoreScript.ChangeScore(10);
