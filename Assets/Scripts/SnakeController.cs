@@ -150,6 +150,19 @@ public class SnakeController : MonoBehaviour
         listCount++;
     }
 
+    public void RemoveBodyPart()
+    {
+        if (listCount > 3)
+        {
+            GameObject lastBody = bodyList[listCount - 1].gameObject;
+            bodyList.Remove(bodyList[listCount - 1]);
+            positionList.Remove(positionList[listCount - 1]);
+            rotationList.Remove(rotationList[listCount - 1]);
+            Destroy(lastBody);
+            listCount--;
+        } 
+    }
+
     private void SnakeDeath()
     {
         if (positionList.GetRange(1, listCount - 1).Contains(head))

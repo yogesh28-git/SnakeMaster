@@ -44,13 +44,13 @@ public class DeathMatchFoodController : MonoBehaviour
             {
                 Destroy(food);
                 greenSnakeController.AddBodyPart();
-                redScoreScript.ChangeScore();
+                redScoreScript.ChangeScore(10);
             }
             else if (greenHead == food.transform.position)
             {
                 Destroy(food);
                 redSnakeController.AddBodyPart();
-                greenScoreScript.ChangeScore();
+                greenScoreScript.ChangeScore(10);
             }
             else
             {

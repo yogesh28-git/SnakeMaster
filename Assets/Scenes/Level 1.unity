@@ -8052,6 +8052,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodPrefab: {fileID: 690318991}
   scoreScript: {fileID: 1711565413}
+  massGainList: []
+  massLossList: []
+  positionList: []
 --- !u!1 &716505187 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7532639546068859884, guid: 2ec05eebb360b2949a2191adb171bcab, type: 3}

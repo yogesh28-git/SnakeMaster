@@ -25,9 +25,10 @@ public class ScoreController : MonoBehaviour
         }
     }
     
-    public void ChangeScore()
+    public void ChangeScore(int increment)
     {
-        score += 10;
+        if(score < 1 && increment < 0) { return;  }
+        score += increment;
         scoreText.text = "Score: " + score;
     }
 
