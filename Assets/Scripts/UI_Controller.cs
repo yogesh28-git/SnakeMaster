@@ -47,6 +47,7 @@ public class UI_Controller : MonoBehaviour
         audiocontroller.Play(Sounds.buttonClick);
         pause.SetActive(false);
         snakeHead1.SetActive(true);
+        snakeHead2.SetActive(true);
     }
     private void Restart()
     {
